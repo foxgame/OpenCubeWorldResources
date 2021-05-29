@@ -50,8 +50,6 @@ namespace X
                 string name = Path.GetDirectoryName( path ) + "\\Icons\\" + Path.GetFileNameWithoutExtension( path ) + ".png";
 
                 Texture2D texture = AssetPreview.GetAssetPreview( obj );
-
-//                 texture.Resize( 64 , 64 );
                 byte[] bytes = texture.EncodeToPNG();
 
                 File.WriteAllBytes( name , bytes );
