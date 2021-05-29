@@ -37,6 +37,29 @@ namespace X
             return path;
         }
 
+
+        [MenuItem( "Assets/Build Assets Preview" )]
+        static void BuildAssetsPreview()
+        {
+            UnityEngine.Object[] objects = Selection.GetFiltered( typeof( UnityEngine.Object ) , SelectionMode.Assets );
+
+            for ( int i = 0 ; i < objects.Length ; i++ )
+            {
+                UnityEngine.Object obj = objects[ i ];
+                string path = AssetDatabase.GetAssetPath( obj );
+                string name = Path.GetDirectoryName( path ) + "\\Icons\\" + Path.GetFileNameWithoutExtension( path ) + ".png";
+
+                Texture2D texture = AssetPreview.GetAssetPreview( obj );
+
+//                 texture.Resize( 64 , 64 );
+                byte[] bytes = texture.EncodeToPNG();
+
+                File.WriteAllBytes( name , bytes );
+
+//                 Texture2D.DestroyImmediate( texture );
+            }
+
+        }
         
         [MenuItem( "Assets/Build AssetBundles" )]
         static void BuildAllAssetBundles()
