@@ -98,6 +98,11 @@ namespace X
 
                 path = AssetDatabase.GetAssetPath( obj );
 
+                if ( !path.Contains( "." ) || path.Contains( Utility.AssetExtension ) )
+                {
+                    continue;
+                }
+
                 if ( !string.IsNullOrEmpty( path ) && File.Exists( path ) )
                 {
                     string name = Path.GetFileNameWithoutExtension( path );
@@ -189,7 +194,7 @@ namespace X
 
                 path = AssetDatabase.GetAssetPath( obj );
 
-                if ( !path.Contains( "." ) )
+                if ( !path.Contains( "." ) || path.Contains( Utility.AssetExtension ) )
                 {
                     continue;
                 }
