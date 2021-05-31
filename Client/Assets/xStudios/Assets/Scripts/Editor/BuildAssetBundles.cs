@@ -59,8 +59,8 @@ namespace X
 
         }
         
-        [MenuItem( "Assets/Build AssetBundles" )]
-        static void BuildAllAssetBundles()
+        [MenuItem( "Assets/Build Directory AssetBundles" )]
+        static void BuildAssetDirectoryAssetBundle()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace X
             {
             }
 
-            string path = "Assets";
+            string path = "";
             UnityEngine.Object[] objects = Selection.GetFiltered( typeof( UnityEngine.Object ) , SelectionMode.Assets );
 
             if ( objects.Length == 0 )
@@ -86,7 +86,8 @@ namespace X
 
             List<AssetBundleBuild> builds = GetSharesBuilds();
             AssetBundleBuild build = new AssetBundleBuild();
-            build.assetBundleName = name1 + Utility.AssetExtension;
+            build.assetBundleName = name1;
+            build.assetBundleVariant = Utility.AssetExtension.Replace( "." , "" );
             build.assetNames = new string[ objects.Length ];
             build.addressableNames = new string[ objects.Length ];
 
@@ -95,11 +96,6 @@ namespace X
                 UnityEngine.Object obj = objects[ i ];
 
                 path = AssetDatabase.GetAssetPath( obj );
-
-                if ( !path.Contains( "." ) || path.Contains( Utility.AssetExtension ) )
-                {
-                    continue;
-                }
 
                 if ( !string.IsNullOrEmpty( path ) && File.Exists( path ) )
                 {
@@ -112,7 +108,7 @@ namespace X
 
             builds.Add( build );
 
-            BuildPipeline.BuildAssetBundles( "Temp" , builds.ToArray() , 
+            BuildPipeline.BuildAssetBundles( "Temp" , builds.ToArray() ,
                 BuildAssetBundleOptions.None , assetSetting.buildTarget );
 
             string filePath = Path.GetDirectoryName( path ) + "/" + name1 + Utility.AssetExtension;
@@ -127,7 +123,6 @@ namespace X
 
             Resources.UnloadAsset( assetSetting );
         }
-
 
         static List<AssetBundleBuild> GetSharesBuilds()
         {
@@ -190,9 +185,9 @@ namespace X
             {
                 UnityEngine.Object obj = objects[ i ];
 
-                path = AssetDatabase.GetAssetPath( obj );
+                path = AssetDatabase.GetAssetPath( obj ).Replace( "\\" , "/" );
 
-                if ( !path.Contains( "." ) || path.Contains( Utility.AssetExtension ) )
+                if ( !path.Contains( "." ) )
                 {
                     continue;
                 }
@@ -204,7 +199,8 @@ namespace X
 
                     string name = Path.GetFileNameWithoutExtension( path );
 
-                    build.assetBundleName = path;
+                    build.assetBundleName = Path.GetDirectoryName( path ).Replace( "\\" , "/" ) + "/" + name;
+                    build.assetBundleVariant = Utility.AssetExtension.Replace( "." , "" );
                     build.assetNames = new string[] { path };
                     build.addressableNames = new string[] { name };
 
@@ -213,14 +209,14 @@ namespace X
                     BuildPipeline.BuildAssetBundles( "Temp" , builds.ToArray() ,
                         BuildAssetBundleOptions.None , assetSetting.buildTarget );
 
-                    string filePath = Path.GetDirectoryName( path ) + "/" + name + Utility.AssetExtension;
+                    string filePath = Path.GetDirectoryName( path ) + "\\" + name + Utility.AssetExtension;
 
                     if ( File.Exists( filePath ) )
                     {
                         File.Delete( filePath );
                     }
 
-                    FileInfo fi = new FileInfo( "Temp/" + path );
+                    FileInfo fi = new FileInfo( "Temp/" + build.assetBundleName + Utility.AssetExtension );
                     fi.MoveTo( filePath );
                 }
             }
@@ -228,6 +224,7 @@ namespace X
 
             Resources.UnloadAsset( assetSetting );
         }
+
     }
 
 }
