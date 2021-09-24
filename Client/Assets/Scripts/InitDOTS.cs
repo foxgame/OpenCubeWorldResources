@@ -7,7 +7,7 @@ public class InitDOTS : MonoBehaviour
 {
     private void Awake()
     {
-        DefaultWorldInitialization.Initialize( "Default World" , false );
+//         DefaultWorldInitialization.Initialize( "Default World" , false );
     }
 
 }

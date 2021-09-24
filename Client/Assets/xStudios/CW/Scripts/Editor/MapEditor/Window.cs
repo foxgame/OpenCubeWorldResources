@@ -65,6 +65,7 @@ namespace X
 
                 Manager.Load();
                 Editor.Init();
+                Palette.Reload();
 
                 isInited = true;
             }

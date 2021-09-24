@@ -606,7 +606,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: ENABLE_HYBRID_RENDERER_V2;ENABLE_COMPUTE_DEFORMATIONS;ENABLE_UNITY_OCCLUSION;UNITY_DISABLE_AUTOMATIC_SYSTEM_BOOTSTRAP
+    1: ENABLE_HYBRID_RENDERER_V2;ENABLE_COMPUTE_DEFORMATIONS;ENABLE_UNITY_OCCLUSION
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

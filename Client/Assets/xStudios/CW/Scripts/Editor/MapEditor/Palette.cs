@@ -19,6 +19,12 @@ namespace X
             static GUIContent[] GUIContents = null;
             static bool[ ] Selection = null;
 
+            public static void Reload()
+            {
+                GUIContents = Manager.GetGUIContents();
+                Selection = new bool[ GUIContents.Length ];
+            }
+
             public static Object GetSelectObject()
             {
                 if ( Manager.SelectedItemIndex >= 0 &&
@@ -74,8 +80,7 @@ namespace X
 
                 if ( GUIContents == null )
                 {
-                    GUIContents = Manager.GetGUIContents();
-                    Selection = new bool[ GUIContents.Length ];
+                    Reload();
                 }
 
                 int newSelectedObjectTypeIndex = EditorGUILayout.Popup( Manager.SelectedObjectTypeIndex , Manager.ObjectTypes );
