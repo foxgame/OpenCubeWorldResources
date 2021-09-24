@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6786e8d8536dd914ebd33d651e241ebb, type: 3}
+  m_Name: Setting
+  m_EditorClassIdentifier: 
+  MaxMapSize: 1024
+  MaxMapHeight: 256
+  RegionSize: 8
+  ObjectTypeList:
+  - None
+  - Cube
+  - Water
+  - Plant
+  - Weapon
+  - Doodad
+  - Other
+  - Template
+  - Invisible
+  ObjectGroupList:
+  - None
+  - Barrels
+  - Brick
+  - Cannon
+  - Chests
+  - Christmas
+  - Clouds
+  - Crate
+  - Dirt
+  - Doors
+  - Ground
+  - Lava
+  - Metal
+  - Metal_Spike
+  - Mine_Rail
+  - Mining
+  - Mushrooms
+  - Pipes
+  - Powerups
+  - Practice_Dummy
+  - Rock
+  - Sand
+  - Sandstone
+  - Snow
+  - Stone
+  - Switch
+  - Totem
+  - Tower_Defense
+  - Wood
+  - Template
+  - Other
+  ObjectConfigLsit:
+  - ObjectID: IceCube1
+    Name: IceCube1
+    Path: X/Common/Objects/Snow/
+    Type: Cube
+    Group: Snow
+    Icon: Icons/ice_cube_1.png
+    Collider: ice_cube_1Collider
+    Obj: ice_cube_1
+  - ObjectID: IceCube2
+    Name: IceCube2
+    Path: X/Common/Objects/Snow/
+    Type: Cube
+    Group: Snow
+    Icon: Icons/ice_cube_2.png
+    Collider: ice_cube_2Collider
+    Obj: ice_cube_2
+  - ObjectID: WoodWindowLight
+    Name: WoodWindowLight
+    Path: X/Common/Objects/Wood/
+    Type: Cube
+    Group: Wood
+    Icon: Icons/wood_window_light.png
+    Collider: wood_window_lightCollider
+    Obj: wood_window_light
+  - ObjectID: Template1
+    Name: Template1
+    Path: X/Common/Objects/Templates/
+    Type: Template
+    Group: Template
+    Icon: Icons/Template1.png
+    Collider: 
+    Obj: Template1
